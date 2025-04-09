@@ -47,10 +47,10 @@ export default defineConfig({
                             testGroup,
                             progress: {
                                 create: {
-                                    soloCompleted: false,
-                                    teamCompleted: false,
-                                    proCompleted: false,
-                                    bonusCompleted: false,
+                                    soloCompleted: [],
+                                    teamCompleted: [],
+                                    proCompleted: [],
+                                    bonusCompleted: [],
                                 }
                             }
                         },
