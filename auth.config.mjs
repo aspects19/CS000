@@ -48,9 +48,9 @@ export default defineConfig({
                             progress: {
                                 create: {
                                     soloCompleted: false,
-                                    teamCompleted: null,
-                                    proCompleted: null,
-                                    bonusCompleted: null
+                                    teamCompleted: false,
+                                    proCompleted: false,
+                                    bonusCompleted: false,
                                 }
                             }
                         },
