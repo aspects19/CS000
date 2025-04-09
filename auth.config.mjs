@@ -34,7 +34,10 @@ export default defineConfig({
                         }
                     })
 
-                    const testGroup = prevUser.testGroup === TestGroup.A ? TestGroup.B : TestGroup.A
+                    let testGroup = TestGroup.A; 
+                    if (prevUser && prevUser.testGroup) {
+                        testGroup = prevUser.testGroup === TestGroup.A ? TestGroup.B : TestGroup.A;
+                    }
 
                     await db.user.create({
                         data: {
@@ -44,7 +47,7 @@ export default defineConfig({
                             testGroup,
                             progress: {
                                 create: {
-                                    soloCompleted: null,
+                                    soloCompleted: false,
                                     teamCompleted: null,
                                     proCompleted: null,
                                     bonusCompleted: null

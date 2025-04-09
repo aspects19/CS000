@@ -13,32 +13,29 @@ model User {
   name      String
   image     String
   testGroup TestGroup @default(A)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   progress  Progress?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   @@index([email])
+}
+
+model Progress {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  soloCompleted  Int[]
+  teamCompleted  Int[]
+  proCompleted   Int[]
+  bonusCompleted Int[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([id, userId])
+  @@index([id, userId])
 }
 
 enum TestGroup {
   A
   B
-}
-
-model Progress {
-  id     String @id @default(cuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  soloCompleted  Int[]
-  teamCompleted  Int[]
-  proCompleted   Int[]
-  bonusCompleted Int[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([id, userId])
-  @@index([id, userId])
 }
